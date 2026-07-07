@@ -1,0 +1,22 @@
+[Unit]
+Description=Party reminder Discord bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Adjust these two paths if you place the project somewhere other than /home/pi
+WorkingDirectory=/home/pi/party-reminder-bot
+ExecStart=/usr/bin/node /home/pi/party-reminder-bot/bot.js
+Restart=on-failure
+RestartSec=10
+User=pi
+# bot.js loads DISCORD_TOKEN / CHANNEL_ID itself via dotenv from the .env
+# file in WorkingDirectory, so no EnvironmentFile= is needed here.
+
+# Basic hardening (safe defaults for a simple bot process)
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
