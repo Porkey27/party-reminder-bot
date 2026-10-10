@@ -5,16 +5,20 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-# Adjust these two paths if you place the project somewhere other than /home/pi
-WorkingDirectory=/home/pi/party-reminder-bot
-ExecStart=/usr/bin/node /home/pi/party-reminder-bot/bot.js
+# Adjust these if your user / install path differ.
+# ExecStart must point at the real node binary: run `which node`.
+# If node came from nvm it'll be something like
+#   /home/admin/.nvm/versions/node/v20.x.x/bin/node
+WorkingDirectory=/home/admin/party-reminder-bot
+ExecStart=/usr/bin/node /home/admin/party-reminder-bot/bot.js
 Restart=on-failure
 RestartSec=10
-User=pi
-# bot.js loads DISCORD_TOKEN / CHANNEL_ID itself via dotenv from the .env
-# file in WorkingDirectory, so no EnvironmentFile= is needed here.
+User=admin
+# bot.js loads its config itself via dotenv from the .env file in
+# WorkingDirectory, so no EnvironmentFile= is needed here.
 
-# Basic hardening (safe defaults for a simple bot process)
+# Basic hardening (safe defaults for a simple bot process).
+# PrivateTmp is fine: ffmpeg only uses pipes, no temp files.
 NoNewPrivileges=true
 PrivateTmp=true
 

@@ -1,13 +1,19 @@
 {
   "name": "party-reminder-bot",
-  "version": "1.0.0",
-  "description": "Sends a daily reminder message to a Discord channel at a random time between 8am and 10pm",
+  "version": "2.0.0",
+  "description": "Daily Discord reminder at a random time between 8am and 10pm, posted in text and spoken in voice via Edge TTS (spooky dual-layer voice in October)",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node bot.js",
+    "spooky": "FORCE_SPOOKY=1 node bot.js"
   },
   "dependencies": {
+    "@discordjs/voice": "^0.19.0",
     "discord.js": "^14.14.1",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "ffmpeg-static": "^5.2.0",
+    "libsodium-wrappers": "^0.7.15",
+    "msedge-tts": "^2.0.0",
+    "opusscript": "^0.1.1"
   }
 }
